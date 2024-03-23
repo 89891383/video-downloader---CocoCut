@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CocoCut M3u8</title>
+<link href="./styles/m3u8.css" rel="stylesheet"><link href="./m3u8.css" rel="stylesheet"></head>
+
+<body>
+  <div class="container">
+    <div class="card">
+      <header class="card-header"><p class="card-header-title"><span id="Tm3PageTile">Parsing m3u8 file</span></p></header>
+      <div class="card-content">
+        <div id="textarea">
+          <div id="mappingsHelp">
+            <div class="field">
+              <label class="label" style="display: inline;" id="Tm3FileUri">M3u8 file URL</label>--><a id="tryPlay" class="button is-primary is-small" href="#" target="_blank"><span id="TtryPlay">Try play</span></a>
+              <div class="control"><input class="input" type="text" id="m3u8_url"/></div>
+            </div>
+            <br />
+            <div class="field">
+              <label class="label"><span id="num"></span><span id="Tm3FileCount"> files</span><span id="key"></span></label>
+              <div class="control"><textarea class="textarea" rows="12" id="html"></textarea></div>
+              <p class="help" id="Tm3Des1">If the parsed ts file cannot be downloaded, please try UrlDecode decoding.</p>
+              <p class="help" id="Tm3Des2">Ffmpeg merge ts files command: ffmpeg -i xxx.m3u8 -vcodec copy -acodec copy xxx.mp4</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="next_m3u8_tr" style="display:none">
+          <p id="Tm3Nextm3file">Select the next level m3u8 file</p>
+          <div class="help">
+            <div class="example">
+              <span id="Tm3Nexm3Des">Another m3u8 file is nested in the m3u8 file.</span>
+            </div>
+          </div>
+          <div id="next_m3u8" style="word-break:break-all"></div>
+        </div>
+      </div>
+      <footer class="card-footer">
+          <a id="DownText" class="card-footer-item">Download as text file</a>
+          <a id="Text" class="card-footer-item">Text format</a>
+          <a id="Aria2Text" class="card-footer-item">Aria2 format</a>
+          <a id="WgetText" class="card-footer-item">Wget format</a>
+          <a id="UrlDecode" class="card-footer-item">UrlDecode decoding</a>
+          <a id="Refresh" class="card-footer-item">Reset</a>
+      </footer>
+    </div>
+  </div>
+  <script src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="./m3u8.js" defer></script></body>
+
+</html>

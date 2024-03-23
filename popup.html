@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="assets/fontawesome/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-size: 12px;
+    }
+
+    a {
+      color: #3079ED;
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    body {
+      font-family: arial, sans-serif;
+      font-size: 12px;
+      width: 565px;
+      overflow-x: hidden;
+      background: #fff;
+    }
+
+    #tempntc {
+      position: relative;
+      left: 0;
+      right: 0;
+      min-height: 20px;
+      line-height: 18px;
+      text-align: center;
+      z-index: 11;
+      display: none;
+      padding: 0 10px;
+    }
+
+    #player {
+      width: 490px;
+      text-align: center;
+    }
+
+    #down {
+      display: none;
+      margin: 3px;
+      text-align: center;
+    }
+
+    .DownCheck {
+      display: none;
+      float: left;
+      vertical-align: middle;
+      margin-right: 5px;
+      width: 15px;
+      height: 15px;
+    }
+
+    #medialist {
+      width: 100%;
+    }
+    #medialist td {padding-left:0.5em;padding-right: 0.5em}
+    .nameTd {
+      word-break: break-all;
+    }
+  </style>
+<link href="./styles/popup.css" rel="stylesheet"><link href="./popup.css" rel="stylesheet"></head>
+
+<body>
+  <div class="columns is-mobile is-gapless is-centered" style="margin-bottom: 0">
+    <div class="column">
+      <div class="container">
+        <div id="tempntc" class="notification is-primary"><span id="TnoResource">No file detected!</span><span id="TpopNeedPlayit"></span></div>
+        <div id="mainPanel">
+          <table id="medialist" class="table has-mobile-cards is-hoverable"></table>
+          <div id="down" class="buttons">
+            <button id="DownFile" class="button is-link"><span class="icon">
+                <i class="fas fa-download"></i>
+              </span><span id="TdownSelected">Download selected</span></button>
+            <button id="AllCopy" class="button is-link"><span class="icon">
+                <i class="fas fa-copy"></i>
+              </span><span id="TcopySelected">Copy selected</span></button>
+            <button id="AllSelect" class="button is-link"><span class="icon">
+                <i class="fas fa-check"></i>
+              </span><span id="TselectAll">Select all</span></button>
+            <button id="ReSelect" class="button is-link"><span class="icon">
+                <i class="fas fa-times"></i>
+              </span><span id="TrevSelected">Inverse selection</span></button>
+          </div>
+          <div class="column is-full has-text-centered">
+            <p class="is-size-7"><span id="TtryHlsLabel">Having trouble downloading?</span><span id="TtryHlsNotice">Try sniff it anyway</span>:</p>
+            <button id="tryHls" class="button is-link is-outlined"
+              title="No matter whether there are videos on the webpage or not, Cococut will try to download or record."><span
+                class="icon">
+                <i class="fas fa-hammer"></i>
+              </span><span id="TtryHls">Try sniff it anyway</span></button>
+
+          </div>
+          <div class="column is-full has-text-centered">
+            <p class="is-size-7"><i class="fa fa-bell" aria-hidden="true"></i><span id="serverNotice"></span></p>
+            <p class="is-size-7"><span id="TpopNeedPlayit2"></span></p>
+            <p class="is-size-7"><small id="vNumber"></small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column is-narrow has-text-centered" style="border-left: darkgrey 1px dotted">
+          <button id="smallTryHlsBtn" class="button is-small is-dark is-fullwidth is-inverted"> <span class="icon is-small">
+              <i class="fas fa-hammer"></i>
+            </span>
+          </button>
+          <button id="optionBtn" class="button is-small is-dark is-fullwidth is-inverted"> <span class="icon is-small">
+              <i class="fas fa-cog"></i>
+            </span>
+          </button>
+          <a id="questionBtn" class="button is-small is-dark is-fullwidth is-inverted" href="https://cococut.net/feedback.html" target="_blank"> <span class="icon is-small">
+              <i class="fas fa-question-circle"></i>
+            </span>
+          </a>
+          <a id="homePageBtn" class="button is-small is-dark is-fullwidth is-inverted" href="https://cococut.net" target="_blank"> <span class="icon is-small">
+              <i class="fas fa-home"></i>
+            </span>
+          </a>
+    </div>
+  </div>
+
+  <script src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="./popup.js" defer></script></body>
+
+</html>

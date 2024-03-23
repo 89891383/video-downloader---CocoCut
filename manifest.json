@@ -1,0 +1,99 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "background": {
+    "scripts": [
+      "dlm/background.js",
+      "./background.js"
+    ]
+  },
+  "browser_action": {
+    "default_popup": "./popup.html"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "assets/js/cocoparser.js"
+      ],
+      "matches": [
+        "*://*.cococut.net/*hls.html*",
+        "*://cococut.net/*hls.html*",
+        "*://*.cococut.net/*hls.vhtml*"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "all_frames": true,
+      "js": [
+        "myContent.js"
+      ],
+      "matches": [
+        "*://*.cococut.net/*",
+        "*://cococut.net/*"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "all_frames": true,
+      "js": [
+        "assets/js/pagehelper.js"
+      ],
+      "matches": [
+        "*://*/*" 
+      ],
+      "run_at": "document_start"
+    },
+    {
+        "matches": ["*://*.cococut.net/dlm/*dlm.html","*://cococut.net/dlm/*dlm.html","*://pro.cococut.net/dlm/*dlm.vhtml"],
+        "js": [
+            "dlm/contentman.js"
+        ]
+    },
+    {
+        "matches": ["*://*.cococut.net/dlm/info/*","*://cococut.net/dlm/info/*"],
+        "all_frames": true,
+        "js": [
+            "dlm/contentinfo.js"
+        ]
+    },
+    {
+        "matches": ["*://*.cococut.net/dlm/modify/*","*://cococut.net/dlm/modify/*"],
+        "all_frames": true,
+        "js": [
+            "dlm/contentmodify.js"
+        ]
+    }
+  ],
+  "description": "__MSG_extDescription__",
+  "icons": {
+    "16": "assets/icons/16x16.png",
+    "32": "assets/icons/32x32.png",
+    "48": "assets/icons/48x48.png",
+    "64": "assets/icons/64x64.png",
+    "128": "assets/icons/128x128.png"
+  },
+  "manifest_version": 2,
+  "name": "__MSG_extName__",
+  "short_name": "CocoCut",
+  "options_page": "./options.html",
+  "permissions": [
+    "tabs",
+    "webRequest",
+    "webRequestBlocking",
+    "http://*/*",
+    "https://*/*",
+    "downloads"
+  ],
+  "version": "2.5.0",
+  "default_locale": "en",
+  "commands": {
+    "force-download": {
+      "suggested_key": {
+        "default": "Alt+Shift+D",
+        "windows": "Alt+Shift+D",
+        "mac": "Alt+Shift+D"
+      },
+      "description": "Send a 'force download' command"
+    }
+  }
+}

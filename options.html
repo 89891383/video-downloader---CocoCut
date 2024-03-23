@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+
+  <style>
+    #options {
+      margin: auto
+    }
+    .card {
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+      margin-bottom: 2rem;
+  }
+  .events-card .card-table {
+    max-height: 659px;
+    overflow-y: scroll;
+    padding: 1.5rem;
+}
+#settingDownloadAnchorElem{display: none;}
+  </style>
+<link href="./styles/options.css" rel="stylesheet"><link href="./options.css" rel="stylesheet"></head>
+<body class="has-navbar-fixed-top">
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+      <div class="navbar-item title">
+        <span id="TcustomSetting">CocoCut设置</span>
+      </div>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start">
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link" id="customNavIEbtns">
+          Import/Export settings
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item" id="exportSettingBtn">
+            Export to local file
+          </a>
+          <a class="navbar-item" id="importSettingBtn">
+            Import from local file
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="navbar-end">
+      <div class="buttons is-right">
+        <button id="ResetExt" class="button is-danger">重置设置</button>
+        <button id="SaveExt" class="button is-success">保存全部设置</button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div id="wrapper" class="container">
+  <div class="columns" id="options">
+    <div class="column">
+        <div class="card events-card">
+          <header class="card-header">
+            <p class="card-header-title" id="TcustomExt">自定义后缀抓取</p>
+          </header>
+          <div class="card-table">
+            <div class="content">
+              <p class="subtitle is-6" id="TcustomExtDec">
+                  填写不带"."的扩展名。小于此大小的文件被过滤，忽略文件大小填0。<br/>部分非媒体资源文件不会被抓取。
+                </p>
+              <table id="exclusionRules" class="table is-fullwidth is-striped">
+                <thead>
+                  <tr>
+                    <th><span class="ExtText" id="TcustomExtName">扩展名</span></th>
+                    <th><span class="ExtText" id="TcustomExtSize">大小限制</span></th>
+                  </tr>
+                </thead>
+                <tbody id="ExtTd">
+                </tbody>
+                <button id="AddExt" class="is-pulled-right button is-primary"><span id="TcustomAdd">新增一个</span></button>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">Content-Type</p>
+          </header>
+          <div class="card-content">
+            <div class="content">
+                <p class="subtitle is-6" id="TcustomCtDec">
+                    一些媒体文件使用非正常扩展名，需要通过MIME判断。
+                    常用格式对照表 <a href="http://tool.oschina.net/commons" target="_blank">http://tool.oschina.net/commons</a>
+                    <br/>
+                    支持通配符，优先匹配扩展名
+                    <br/>
+                  </p>
+                  <p id="TcustomTypeIgn" class="subtitle is-6"></p>
+                <table id="exclusionRules" class="table is-fullwidth is-striped">
+                    <thead>
+                      <tr>
+                        <th><span class="ExtType" id="TcustomCtMIME">MIME类型</span></th>
+                      </tr>
+                    </thead>
+                    <tbody id="ExtTy"></tbody>
+                    <button id="AddType" class="is-pulled-right  button is-primary"><span id="TcustomAddMine">新增一个</span></button>
+                  </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title" id="TcustomOt">其他选项</p>
+          </header>
+          <div class="card-content">
+            <div class="content">
+                <table id="exclusionRules" class="table is-fullwidth is-striped">
+                    <tr>
+                      <td></td>
+                      <td>
+                        <input id="repeat" type="checkbox">
+                        <span id="TcustomOtIgnore">忽略参数(避免重复)</span>
+                        <p id="TcustomOtIgnoreDec" class="is-size-7">某些网站媒体资源自带参数。勾选忽略参数过滤重复数据。</p>
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="caption"></td>
+                        <td>
+                          <input id="repeatReg" type="text">
+                          <div class="is-size-7" id="TcustomOtReg">匹配视频参数的正则，用于去除参数。不了解正则请勿动，可使用重置还原。</div>
+                        </td>
+                      </tr>
+              
+                      <tr>
+                        <td class="caption"></td>
+                        <td class="booleanOption">
+                          <label>
+                            <input id="TitleName" type="checkbox">
+                            <span id="TcustomOtFilename">下载时使用网页标题做文件名</span>
+                          </label>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td class="caption"></td>
+                        <td class="booleanOption">
+                          <label>
+                            <input id="showCountOnIcon" type="checkbox">
+                            <span id="TcustomShowCountOnIcon">Display the number of files on CocoCut extension icon</span>
+                          </label>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td class="caption"></td>
+                        <td class="booleanOption">
+                          <label>
+                            <span id="TcustomMaxDisplayCount">How many files are displayed on the popup page file list</span>
+                            <input id="MaxDisplayCount" type="input">
+                          </label>
+                        </td>
+                      </tr>
+              
+                      <!-- <tr>
+                        <td class="caption"></td>
+                        <td class="booleanOption">
+                          <label>
+                            <input id="Debug" type="checkbox">
+                            <span id="TcustomDebug">调试模式</span>
+                          </label>
+                        </td>
+                      </tr>
+               -->
+                      <tr>
+                        <td class="caption"></td>
+                        <td class="booleanOption">
+                        </td>
+                      </tr>
+                </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column">
+        <div class="card events-card">
+          <header class="card-header">
+            <p class="card-header-title" id="TcustomBlockedDomains">Blocked domains</p>
+          </header>
+          <div class="card-table">
+            <div class="content">
+              <p class="subtitle is-6" id="TcustomBlockedDomainsDec">
+                Files from the following domains will not appear in the download list.
+                </p>
+                <p class="subtitle is-6" >(<span id="TcustomBlockedDomainExample">Domain name's format should be as: </span> www.example.com)</p>
+              <table id="blockedDomainsTable" class="table is-fullwidth is-striped">
+                <tbody id="blockedDomainsTd">
+                </tbody>
+                <button id="AddBlockedDomain" class="is-pulled-right button is-primary"><span id="TcustomBlockedDomain">Add</span></button>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="confMsg">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+      </header>
+      <section class="modal-card-body" id="TempntcText">
+      </section>
+      <footer class="modal-card-foot buttons is-right">
+        <button class="button is-success" id="modalOkBtn">OK</button>
+        <button class="button" style="display: none;" id="modalCancelBtn">Cancel</button>
+      </footer>
+    </div>
+  </div>
+
+  <div class="modal" id="importSettingsModal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+      </header>
+      <section class="modal-card-body" id="importSettingsBody">
+        <p id="importSettingsWarning">Warning: this will replace all current settings.</p>
+        <div id="importSettingsFile" class="file has-name">
+          <label class="file-label">
+            <input class="file-input" type="file" name="resume">
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label" id="importSettingsFilelabel">
+                Choose a Cococut Settings file…
+              </span>
+            </span>
+            <span class="file-name" id="importSettingsFilename">
+              No file selected
+            </span>
+          </label>
+        </div>        
+      </section>
+      <footer class="modal-card-foot buttons is-right">
+        <button class="button is-success" id="importSettingsOkBtn">OK</button>
+        <button class="button" style="display: none;" id="importSettingsCancelBtn">Cancel</button>
+      </footer>
+    </div>
+  </div>
+<hr/>
+  <div class="has-text-primary is-size-6	has-text-centered"><a href="https://cococut.net/credit/" target="_blank">Credit</a></div>
+  <script src="assets/js/jquery.min.js"></script>
+  <a id="settingDownloadAnchorElem"></a>
+  <script type="text/javascript" src="./options.js" defer></script></body>
+
+</html>
